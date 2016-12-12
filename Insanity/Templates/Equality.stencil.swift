@@ -2,7 +2,7 @@
 {% for type in types.classes %} {% if type.storedVariables.count %}
 extension { { type.name }} {
     override func isEqual(_ object: Any?) -> Bool {
-        guard let rhs = object as? { { type.name }} else { return false } {% for variable in type.storedVariables %} if self. {{ variable.name }} != rhs. {{ variable.name }} { return false } {% endfor %} {% if type.inheritedTypes.first == "NSObject" %}
+        guard let rhs = object as? { { type.name }} else { return false } {% for variable in type.storedVariables %} if self. { { variable.name }} != rhs. { { variable.name }} { return false } {% endfor %} {% if type.inheritedTypes.first == "NSObject" %}
         return true {% else %}
         return super.isEqual(rhs) {% endif %}
     }
